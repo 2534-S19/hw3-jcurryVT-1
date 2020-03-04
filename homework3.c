@@ -54,7 +54,8 @@ int main(void)
 
     }
 }
-
+//fsm for debouncing in notes
+//
 void initBoard()
 {
     WDT_A_hold(WDT_A_BASE);
@@ -62,24 +63,51 @@ void initBoard()
 
 // TODO: Map the value of a count variable to a color for LED2.
 // Since count is an unsigned integer, you can mask the value in some way.
-void changeLaunchpadLED2(unsigned int count)
+void changeLaunchpadLED2(unsigned int count0)//can i switch to count0 or count1
 {
-
+    //this and other case would be same FSM cases w/ different things calling them IE a button vs a timer
 }
+
+
 
 // TODO: Maybe the value of a count variable to a color for the Boosterpack LED
 // This is essentially a copy of the previous function, using a different LED
-void changeBoosterpackLED(unsigned int count)
+void changeBoosterpackLED(unsigned int count1)
 {
+    //state 1 red
 
+
+    // green
+
+    //yellow
+
+    // blue
+
+    //pink
+
+    //light blue
+
+    //white
+
+    //off
 }
 
 // TODO: Create a button state machine.
 // The button state machine should return true or false to indicate a completed, debounced button press.
-bool fsmBoosterpackButtonS1(unsigned int buttonhistory)
+bool fsmBoosterpackButtonS1(unsigned int buttonhistory) //what is buttonhistory is that counting button presses so i can switch colors
 {
+
+    // do i want my fsm here
+    //or do I want to debounce here
+    //or boffa
+//button hist to know where or no
+
+    //use pull down
+
+    // in summary part of slides
+
     bool pressed = false;
 
-
+//
     return pressed;
 }

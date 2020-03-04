@@ -1,8 +1,8 @@
 /*
  * GPIO.c
  *
- *  Created on:
- *      Author:
+ *  Created on: 3/2/20
+ *      Author: John Curry
  */
 
 // For the code you place here, you may use your code that uses register references.
@@ -10,6 +10,20 @@
 
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 #include "myGPIO.h"
+
+#define PRESSED 0
+
+#define BoosterUP BIT1 //S1 BUTTON
+
+#define redLaunchpad BIT0
+
+#define boosterRGB_RED BIT6
+#define boosterRGB_GREEN BIT4
+#define boosterRGB_BLUE BIT6
+
+#define launchpadRGB_RED BIT0
+#define launchpadRGB_BLUE BIT2
+#define launchpadRGB_GREEN BIT1
 
 // TODO: Create a function to initialize the GPIO.
 // Even though this assignment does not use all of the pushbuttons, you should write one function that does a complete GPIO init.
@@ -50,19 +64,18 @@ unsigned char checkStatus_LaunchpadS1()
 // TODO: Create a function to return the status of Launchpad Pushbutton S2
 unsigned char checkStatus_LaunchpadS2()
 {
-
 }
 
 // TODO: Create a function to return the status of Boosterpack Pushbutton S1
 unsigned char checkStatus_BoosterpackS1()
 {
-
+    return (( PIIN & BoosterUP) =! PRESSED); // the light moves when the button is released, hence the !=
 }
 
 // TODO: Create a function to return the status of Boosterpack Pushbutton S2
 unsigned char checkStatus_BoosterpackS2()
 {
-
+  //screw you for making me do thiss
 }
 
 // TODO: Create a function to turn on Launchpad LED1.

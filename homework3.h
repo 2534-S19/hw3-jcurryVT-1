@@ -22,5 +22,7 @@ bool fsmBoosterpackButtonS1(unsigned char buttonhistory);
 
 // TODO: Define any constants that are local to homework.c using #define
 
+//ask thweatt if i can just #define stuff in .c why do 1 over the other
+
 
 #endif /* HOMEWORK3_H_ */

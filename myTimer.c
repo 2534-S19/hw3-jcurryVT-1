@@ -1,8 +1,8 @@
 /*
  * myTimer.c
  *
- *  Created on:
- *      Author:
+ *  Created on: 3/2/20
+ *      Author: John Curry
  */
 
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
@@ -25,6 +25,7 @@ void initTimer(unsigned int timer, unsigned int preScaler, unsigned int count)
 // TODO: Write a function that indicates whether Timer0 has expired.
 // You have been given a such a function in the lecture slides.
 bool timer0Expired(void) //check w/ thweatt if he's gonna honor code me for his slides
+//straight up ctrl+c and ctrl+v from slides
 {
     static unsigned int previousSnap = MAX_VALUE;
     unsigned int currentSnap;
@@ -42,6 +43,7 @@ bool timer0Expired(void) //check w/ thweatt if he's gonna honor code me for his 
 // This is essentially a copy of the previous function, using a different timer.
 // Since we only have two timers, later in the course we will create software timers that use a common time base.
 bool timer1Expired(void)
+//straight up ctrl+c and ctrl+v from slides but switched to timer32_1_base
 {
     static unsigned int previousSnap = MAX_VALUE;
     unsigned int currentSnap;

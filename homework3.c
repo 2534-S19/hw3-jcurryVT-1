@@ -147,29 +147,29 @@ void changeBoosterpackLED(unsigned int count1)
         turnOff_BoosterpackLEDBlue();
         break;
     case 3:  // blue
-        turnOff_LaunchpadLED2Red();
-        turnOff_LaunchpadLED2Green();
-        turnOn_LaunchpadLED2Blue();
+        turnOff_BoosterpackLEDRed();
+                turnOff_BoosterpackLEDGreen();
+                turnOn_BoosterpackLEDBlue();
         break;
     case 4:  //pink
-        turnOn_LaunchpadLED2Red();
-        turnOff_LaunchpadLED2Green();
-        turnOn_LaunchpadLED2Blue();
+        turnOn_BoosterpackLEDRed();
+                turnOff_BoosterpackLEDGreen();
+                turnOn_BoosterpackLEDBlue();
         break;
     case 5:   //light blue
-        turnOff_LaunchpadLED2Red();
-        turnOn_LaunchpadLED2Green();
-        turnOn_LaunchpadLED2Blue();
+        turnOff_BoosterpackLEDRed();
+                turnOn_BoosterpackLEDGreen();
+                turnOn_BoosterpackLEDBlue();
         break;
     case 6: //white
-        turnOn_LaunchpadLED2Red();
-        turnOn_LaunchpadLED2Green();
-        turnOn_LaunchpadLED2Blue();
+        turnOn_BoosterpackLEDRed();
+                turnOn_BoosterpackLEDGreen();
+                turnOn_BoosterpackLEDBlue();
         break;
     case 7:  //off
-        turnOff_LaunchpadLED2Red();
-        turnOff_LaunchpadLED2Green();
-        turnOff_LaunchpadLED2Blue();
+        turnOff_BoosterpackLEDRed();
+                turnOff_BoosterpackLEDGreen();
+                turnOff_BoosterpackLEDBlue();
         break;
     }
 }

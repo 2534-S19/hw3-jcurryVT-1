@@ -26,6 +26,7 @@ bool timer1Expired(void);
 #define MAX_VALUE           0xFFFFFFFF
 
 // TODO: Determine values to represent the timer count values for one second (Timer0) and one millisecond (Timer1)
+//math like we did in class mon
 #define TIMER0_COUNT        3000000
 #define TIMER1_COUNT        3000
 

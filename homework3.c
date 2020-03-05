@@ -56,7 +56,7 @@ int main(void)
 
         if (check)
         {
-            count1 = ((count1 + 1) % 8);
+            (count1++ );
         }
 
     }
@@ -128,52 +128,52 @@ void changeLaunchpadLED2(unsigned int count0) //can i switch to count0 or count1
 void changeBoosterpackLED(unsigned int count1)
 {
     //it's calling colors wrong
-    switch (count1)
+    switch ((count1)%8)
     //what's switch based on
     {
 
-    case 1: //state 1 red
-        //off
-        turnOff_BoosterpackLEDRed();
-        turnOff_BoosterpackLEDBlue();
-        turnOff_BoosterpackLEDGreen();
-        break;
-    case 2: // red
-        turnOn_BoosterpackLEDRed();
-        turnOff_BoosterpackLEDGreen();
-        turnOff_BoosterpackLEDBlue();
-        break;
-    case 3:  //green
-        turnOff_BoosterpackLEDRed();
-        turnOn_BoosterpackLEDGreen();
-        turnOff_BoosterpackLEDBlue();
-        break;
-    case 4:  //  yellow
-        turnOn_BoosterpackLEDRed();
-        turnOn_BoosterpackLEDGreen();
-        turnOff_BoosterpackLEDBlue();
-        break;
-    case 5://blue
-        turnOff_BoosterpackLEDRed();
-        turnOff_BoosterpackLEDGreen();
-        turnOn_BoosterpackLEDBlue();
-        break;
-    case 6:  //ppink
-        turnOn_BoosterpackLEDRed();
-        turnOff_BoosterpackLEDGreen();
-        turnOff_BoosterpackLEDBlue();
-        break;
-    case 7: //light blue
-        turnOff_BoosterpackLEDRed();
-        turnOn_BoosterpackLEDGreen();
-        turnOn_BoosterpackLEDBlue();
-        break;
-    case 8:  //white
-        turnOn_BoosterpackLEDRed();
-        turnOn_BoosterpackLEDGreen();
-        turnOn_BoosterpackLEDBlue();
+    case 0: //state 1 red
 
+        turnOn_BoosterpackLEDRed();
+        turnOff_BoosterpackLEDBlue();
+        turnOff_BoosterpackLEDGreen();
         break;
+    case 1: // green
+        turnOff_BoosterpackLEDRed();
+        turnOn_BoosterpackLEDGreen();
+        turnOff_BoosterpackLEDBlue();
+        break;
+    case 2:  //yellow
+        turnOn_BoosterpackLEDRed();
+        turnOn_BoosterpackLEDGreen();
+        turnOff_BoosterpackLEDBlue();
+        break;
+    case 3:  //  blue
+        turnOff_BoosterpackLEDRed();
+        turnOff_BoosterpackLEDGreen();
+        turnOn_BoosterpackLEDBlue();
+        break;
+    case 4://pink
+        turnOn_BoosterpackLEDRed();
+        turnOff_BoosterpackLEDGreen();
+        turnOn_BoosterpackLEDBlue();
+        break;
+    case 5:  //lightblue
+        turnOff_BoosterpackLEDRed();
+        turnOn_BoosterpackLEDGreen();
+        turnOn_BoosterpackLEDBlue();
+        break;
+    case 6: //white
+        turnOn_BoosterpackLEDRed();
+        turnOn_BoosterpackLEDGreen();
+        turnOn_BoosterpackLEDBlue();
+        break;
+    case 7:  //off
+
+        turnOff_BoosterpackLEDRed();
+                turnOff_BoosterpackLEDBlue();
+                turnOff_BoosterpackLEDGreen();
+                break;
     }
 }
 
@@ -202,7 +202,7 @@ bool fsmBoosterpackButtonS1(unsigned char buttonhistory) //what is buttonhistory
     switch (state)
     {
     case up:
-        if (buttonhistory == 255) //why doesn't it work w/1 mess with this later
+        if (buttonhistory == 0xff) //why doesn't it work w/1 mess with this later
         {
             state = down;
             pressed = true;
@@ -216,9 +216,9 @@ bool fsmBoosterpackButtonS1(unsigned char buttonhistory) //what is buttonhistory
             pressed = false;
         }
         break;
-        buttonhistory = state; //this so it loops
+
     }
 
-
+    buttonhistory = state; //this so it loops
     return pressed;
 }

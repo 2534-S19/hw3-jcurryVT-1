@@ -30,26 +30,6 @@
 #define LaunchpadL BIT1  //P1.1
 #define LaunchpadR BIT4
 
-void RGBredLaunchpad()//p2.0
-
-{
-    P2DIR = P2DIR | launchpadRGB_RED;
-
-}
-
-void BoosterpackUP()
-{
-    P5DIR = P5DIR & ~BoosterUP;
-    P5REN = P5REN | BoosterUP;
-    P5OUT = P5OUT | BoosterUP;
-
-}
-
-void RGBredBooster()
-{
-    P2DIR = P2DIR | boosterRGB_RED;
-   // P2OUT |= boosterRGB_RED;
-}
 // TODO: Create a function to initialize the GPIO.
 // Even though this assignment does not use all of the pushbuttons, you should write one function that does a complete GPIO init.
 void initGPIO()
@@ -97,6 +77,26 @@ void initGPIO()
     // Turn off all LEDs at the start.
 }
 
+void RGBredLaunchpad()//p2.0
+
+{
+    P2DIR = P2DIR | launchpadRGB_RED;
+
+}
+
+void BoosterpackUP()
+{
+    P5DIR = P5DIR & ~BoosterUP;
+    P5REN = P5REN | BoosterUP;
+    P5OUT = P5OUT | BoosterUP;
+
+}
+
+void RGBredBooster()
+{
+    P2DIR = P2DIR | boosterRGB_RED;
+   // P2OUT |= boosterRGB_RED;
+}
 void Launchpadleft() //down
 {
     P1DIR = P1DIR & ~LaunchpadL;

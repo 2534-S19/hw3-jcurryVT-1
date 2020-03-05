@@ -259,8 +259,9 @@ void turnOn_BoosterpackLEDRed()
 // TODO: Create a function to turn off the Red Boosterpack LED2.
 void turnOff_BoosterpackLEDRed()
 {
-    P2OUT |= boosterRGB_RED;
-    P2OUT = P2OUT &~boosterRGB_RED;
+   // P2OUT |= boosterRGB_RED;
+    //P2OUT = P2OUT &~boosterRGB_RED;
+    P2OUT &= boosterRGB_RED;
 }
 
 // TODO: Create a function to turn on the Green Boosterpack LED2.
@@ -273,8 +274,9 @@ void turnOn_BoosterpackLEDGreen()
 // TODO: Create a function to turn off the Green Boosterpack LED2.
 void turnOff_BoosterpackLEDGreen()
 {
-    P2OUT |= boosterRGB_GREEN;
-    P2OUT = P2OUT &~boosterRGB_GREEN;
+//    P2OUT |= boosterRGB_GREEN;
+//    P2OUT = P2OUT &~boosterRGB_GREEN;
+    P2OUT &= boosterRGB_GREEN;
 }
 
 // TODO: Create a function to turn on the Blue Boosterpack LED2.
@@ -287,6 +289,6 @@ void turnOn_BoosterpackLEDBlue()
 // TODO: Create a function to turn off the Green Boosterpack LED2.
 void turnOff_BoosterpackLEDBlue()
 {
-    P5OUT |= boosterRGB_BLUE;
-    P5OUT = P5OUT &~boosterRGB_BLUE;
+
+    P5OUT &= boosterRGB_BLUE;
 }

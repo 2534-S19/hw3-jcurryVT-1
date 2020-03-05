@@ -165,24 +165,25 @@ void RGBblueBooster()
 // TODO: Create a function to return the status of Launchpad Pushbutton S1
 unsigned char checkStatus_LaunchpadS1()
 {
-
+    return (( P1IN & LaunchpadL) == PRESSED);
 }
 
 // TODO: Create a function to return the status of Launchpad Pushbutton S2
 unsigned char checkStatus_LaunchpadS2()
 {
+    return (( P1IN & LaunchpadR) == PRESSED);
 }
 
 // TODO: Create a function to return the status of Boosterpack Pushbutton S1
 unsigned char checkStatus_BoosterpackS1()
 {
-    return (( P5IN & BoosterUP) == PRESSED);
+    return (( P5IN & BoosterUP) != PRESSED);
 }
 
 // TODO: Create a function to return the status of Boosterpack Pushbutton S2
 unsigned char checkStatus_BoosterpackS2()
 {
-  //screw you for making me do this
+    return (( P3IN & BoosterDN) == PRESSED);
 }
 
 // TODO: Create a function to turn on Launchpad LED1.

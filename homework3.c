@@ -37,7 +37,7 @@ int main(void)
         // YOU MUST WRITE timer0expired IN myTimer.c
         if (timer0Expired())
         {
-            count0 = ((count0+1)%8);
+            count0 = ((count0 + 1) % 8);
         }
         // TODO: If Timer1 has expired, update the button history from the pushbutton value.
         // YOU MUST WRITE timer1expired IN myTimer.c
@@ -55,7 +55,7 @@ int main(void)
 
         if (check)
         {
-            count1 = (count1+1) % 8;
+            count1 = (count1 + 1) % 8;
         }
 
     }
@@ -78,43 +78,43 @@ void changeLaunchpadLED2(unsigned int count0) //can i switch to count0 or count1
     //what's switch based on
     {
 
-    case 1: //state 1 red
+    case 0: //state 1 red
         //callred LED
         turnOn_LaunchpadLED2Red();
         turnOff_LaunchpadLED2Green();
         turnOff_LaunchpadLED2Blue();
         break;
-    case 2: // green
+    case 1: // green
         turnOff_LaunchpadLED2Red();
         turnOn_LaunchpadLED2Green();
         turnOff_LaunchpadLED2Blue();
         break;
-    case 3:  //yellow
+    case 2:  //yellow
         turnOn_LaunchpadLED2Red();
         turnOn_LaunchpadLED2Green();
         turnOff_LaunchpadLED2Blue();
         break;
-    case 4:  // blue
+    case 3:  // blue
         turnOff_LaunchpadLED2Red();
         turnOff_LaunchpadLED2Green();
         turnOn_LaunchpadLED2Blue();
         break;
-    case 5:  //pink
+    case 4:  //pink
         turnOn_LaunchpadLED2Red();
         turnOff_LaunchpadLED2Green();
         turnOn_LaunchpadLED2Blue();
         break;
-    case 6:   //light blue
+    case 5:   //light blue
         turnOff_LaunchpadLED2Red();
         turnOn_LaunchpadLED2Green();
         turnOn_LaunchpadLED2Blue();
         break;
-    case 7: //white
+    case 6: //white
         turnOn_LaunchpadLED2Red();
         turnOn_LaunchpadLED2Green();
         turnOn_LaunchpadLED2Blue();
         break;
-    case 8:  //off
+    case 7:  //off
         turnOff_LaunchpadLED2Red();
         turnOff_LaunchpadLED2Green();
         turnOff_LaunchpadLED2Blue();
@@ -126,50 +126,51 @@ void changeLaunchpadLED2(unsigned int count0) //can i switch to count0 or count1
 // This is essentially a copy of the previous function, using a different LED
 void changeBoosterpackLED(unsigned int count1)
 {
+    //it's calling colors wrong
     switch (count1)
     //what's switch based on
     {
 
-    case 0: //state 1 red
+    case 1: //state 1 red
         //callred LED
-       turnOn_BoosterpackLEDRed();
-       turnOff_BoosterpackLEDBlue();
-       turnOff_BoosterpackLEDGreen();
+        turnOn_BoosterpackLEDRed();
+        turnOff_BoosterpackLEDBlue();
+        turnOff_BoosterpackLEDGreen();
         break;
-    case 1: // green
+    case 2: // green
         turnOff_BoosterpackLEDRed();
         turnOn_BoosterpackLEDGreen();
         turnOff_BoosterpackLEDBlue();
         break;
-    case 2:  //yellow
+    case 3:  //yellow
         turnOn_BoosterpackLEDRed();
         turnOn_BoosterpackLEDGreen();
         turnOff_BoosterpackLEDBlue();
         break;
-    case 3:  // blue
+    case 4:  // blue
         turnOff_BoosterpackLEDRed();
-                turnOff_BoosterpackLEDGreen();
-                turnOn_BoosterpackLEDBlue();
+        turnOff_BoosterpackLEDGreen();
+        turnOn_BoosterpackLEDBlue();
         break;
-    case 4:  //pink
+    case 5:  //pink
         turnOn_BoosterpackLEDRed();
-                turnOff_BoosterpackLEDGreen();
-                turnOn_BoosterpackLEDBlue();
+        turnOff_BoosterpackLEDGreen();
+        turnOn_BoosterpackLEDBlue();
         break;
-    case 5:   //light blue
+    case 6:   //light blue
         turnOff_BoosterpackLEDRed();
-                turnOn_BoosterpackLEDGreen();
-                turnOn_BoosterpackLEDBlue();
+        turnOn_BoosterpackLEDGreen();
+        turnOn_BoosterpackLEDBlue();
         break;
-    case 6: //white
+    case 7: //white
         turnOn_BoosterpackLEDRed();
-                turnOn_BoosterpackLEDGreen();
-                turnOn_BoosterpackLEDBlue();
+        turnOn_BoosterpackLEDGreen();
+        turnOn_BoosterpackLEDBlue();
         break;
-    case 7:  //off
+    case 8:  //off
         turnOff_BoosterpackLEDRed();
-                turnOff_BoosterpackLEDGreen();
-                turnOff_BoosterpackLEDBlue();
+        turnOff_BoosterpackLEDGreen();
+        turnOff_BoosterpackLEDBlue();
         break;
     }
 }
@@ -203,7 +204,7 @@ bool fsmBoosterpackButtonS1(unsigned char buttonhistory) //what is buttonhistory
         }
         break;
 
-        case down:
+    case down:
         if (buttonhistory != 0xff)
         {
             state = up;

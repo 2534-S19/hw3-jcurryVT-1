@@ -10,7 +10,7 @@ int main(void)
     unsigned int count1 = 0;
 
     // TODO: Declare the variables that main uses to interact with your state machine.
-
+    unsigned char history = 0xff;
 
     // Stops the Watchdog timer.
     initBoard();
@@ -24,7 +24,7 @@ int main(void)
     // YOU MUST WRITE THIS FUNCTION IN myTimer.c
     initTimer(TIMER32_1_BASE, TIMER1_PRESCALER, TIMER1_COUNT);
 
-    while(1)
+    while (1)
     {
         // Update the color of LED2 using count0 as the index.
         // YOU MUST WRITE THIS FUNCTION BELOW.
@@ -35,22 +35,28 @@ int main(void)
 
         // TODO: If Timer0 has expired, increment count0.
         // YOU MUST WRITE timer0expired IN myTimer.c
-
-
-
+        if (timer0Expired())
+        {
+            count0 = ((count0+1)%8);
+        }
         // TODO: If Timer1 has expired, update the button history from the pushbutton value.
         // YOU MUST WRITE timer1expired IN myTimer.c
-
-
+        if (timer1Expired)
+        {
+            history = (history << 1) | checkStatus_BoosterpackS1();
+        }
 
         // TODO: Call the button state machine function to check for a completed, debounced button press.
         // YOU MUST WRITE THIS FUNCTION BELOW.
 
+        bool check = fsmBoosterpackButtonS1(history);
 
+        //// TODO: If a completed, debounced button press has occurred, increment count1.
 
-        // TODO: If a completed, debounced button press has occurred, increment count1.
-
-
+        if (check)
+        {
+            count1 = (count1++) % 8;
+        }
 
     }
 }
@@ -63,38 +69,114 @@ void initBoard()
 
 // TODO: Map the value of a count variable to a color for LED2.
 // Since count is an unsigned integer, you can mask the value in some way.
-void changeLaunchpadLED2(unsigned int count0)//can i switch to count0 or count1
+void changeLaunchpadLED2(unsigned int count0) //can i switch to count0 or count1
+
+//this and other case would be same FSM cases w/ different things calling them IE a button vs a timer
 {
-    //this and other case would be same FSM cases w/ different things calling them IE a button vs a timer
+
+    switch (count0)
+    //what's switch based on
+    {
+
+    case 1: //state 1 red
+        //callred LED
+        turnOn_LaunchpadLED2Red();
+        turnOff_LaunchpadLED2Green();
+        turnOff_LaunchpadLED2Blue();
+        break;
+    case 2: // green
+        turnOff_LaunchpadLED2Red();
+        turnOn_LaunchpadLED2Green();
+        turnOff_LaunchpadLED2Blue();
+        break;
+    case 3:  //yellow
+        turnOn_LaunchpadLED2Red();
+        turnOn_LaunchpadLED2Green();
+        turnOff_LaunchpadLED2Blue();
+        break;
+    case 4:  // blue
+        turnOff_LaunchpadLED2Red();
+        turnOff_LaunchpadLED2Green();
+        turnOn_LaunchpadLED2Blue();
+        break;
+    case 5:  //pink
+        turnOn_LaunchpadLED2Red();
+        turnOff_LaunchpadLED2Green();
+        turnOn_LaunchpadLED2Blue();
+        break;
+    case 6:   //light blue
+        turnOff_LaunchpadLED2Red();
+        turnOn_LaunchpadLED2Green();
+        turnOn_LaunchpadLED2Blue();
+        break;
+    case 7: //white
+        turnOn_LaunchpadLED2Red();
+        turnOn_LaunchpadLED2Green();
+        turnOn_LaunchpadLED2Blue();
+        break;
+    case 8:  //off
+        turnOff_LaunchpadLED2Red();
+        turnOff_LaunchpadLED2Green();
+        turnOff_LaunchpadLED2Blue();
+        break;
+    }
 }
-
-
 
 // TODO: Maybe the value of a count variable to a color for the Boosterpack LED
 // This is essentially a copy of the previous function, using a different LED
 void changeBoosterpackLED(unsigned int count1)
 {
-    //state 1 red
+    switch (count1)
+    //what's switch based on
+    {
 
-
-    // green
-
-    //yellow
-
-    // blue
-
-    //pink
-
-    //light blue
-
-    //white
-
-    //off
+    case 1: //state 1 red
+        //callred LED
+        turnOn_LaunchpadLED2Red();
+        turnOff_LaunchpadLED2Green();
+        turnOff_LaunchpadLED2Blue();
+        break;
+    case 2: // green
+        turnOff_LaunchpadLED2Red();
+        turnOn_LaunchpadLED2Green();
+        turnOff_LaunchpadLED2Blue();
+        break;
+    case 3:  //yellow
+        turnOn_LaunchpadLED2Red();
+        turnOn_LaunchpadLED2Green();
+        turnOff_LaunchpadLED2Blue();
+        break;
+    case 4:  // blue
+        turnOff_LaunchpadLED2Red();
+        turnOff_LaunchpadLED2Green();
+        turnOn_LaunchpadLED2Blue();
+        break;
+    case 5:  //pink
+        turnOn_LaunchpadLED2Red();
+        turnOff_LaunchpadLED2Green();
+        turnOn_LaunchpadLED2Blue();
+        break;
+    case 6:   //light blue
+        turnOff_LaunchpadLED2Red();
+        turnOn_LaunchpadLED2Green();
+        turnOn_LaunchpadLED2Blue();
+        break;
+    case 7: //white
+        turnOn_LaunchpadLED2Red();
+        turnOn_LaunchpadLED2Green();
+        turnOn_LaunchpadLED2Blue();
+        break;
+    case 8:  //off
+        turnOff_LaunchpadLED2Red();
+        turnOff_LaunchpadLED2Green();
+        turnOff_LaunchpadLED2Blue();
+        break;
+    }
 }
 
 // TODO: Create a button state machine.
 // The button state machine should return true or false to indicate a completed, debounced button press.
-bool fsmBoosterpackButtonS1(unsigned int buttonhistory) //what is buttonhistory is that counting button presses so i can switch colors
+bool fsmBoosterpackButtonS1(unsigned char buttonhistory) //what is buttonhistory is that counting button presses so i can switch colors
 {
 
     // do i want my fsm here
@@ -107,7 +189,28 @@ bool fsmBoosterpackButtonS1(unsigned int buttonhistory) //what is buttonhistory 
     // in summary part of slides
 
     bool pressed = false;
+    static enum
+    {
+        up, down
+    } state = up;
+    switch (state)
+    {
+    case up:
+        if (buttonhistory == 0xff) //why not 0 mess with this later
+        {
+            state = down;
+            pressed = true;
+        }
+        break;
 
-//
+        case down:
+        if (buttonhistory != 0xff)
+        {
+            state = up;
+            pressed = false;
+        }
+        break;
+    }
+    buttonhistory = state; //this so it loops
     return pressed;
 }

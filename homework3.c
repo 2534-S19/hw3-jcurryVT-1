@@ -41,7 +41,7 @@ int main(void)
         }
         // TODO: If Timer1 has expired, update the button history from the pushbutton value.
         // YOU MUST WRITE timer1expired IN myTimer.c
-        if (timer1Expired)
+        if (timer1Expired())
         {
             history = (history << 1) | checkStatus_BoosterpackS1();
         }
@@ -55,7 +55,7 @@ int main(void)
 
         if (check)
         {
-            count1 = (count1++) % 8;
+            count1 = (count1+1) % 8;
         }
 
     }
@@ -130,43 +130,43 @@ void changeBoosterpackLED(unsigned int count1)
     //what's switch based on
     {
 
-    case 1: //state 1 red
+    case 0: //state 1 red
         //callred LED
-        turnOn_LaunchpadLED2Red();
-        turnOff_LaunchpadLED2Green();
-        turnOff_LaunchpadLED2Blue();
+       turnOn_BoosterpackLEDRed();
+       turnOff_BoosterpackLEDBlue();
+       turnOff_BoosterpackLEDGreen();
         break;
-    case 2: // green
+    case 1: // green
+        turnOff_BoosterpackLEDRed();
+        turnOn_BoosterpackLEDGreen();
+        turnOff_BoosterpackLEDBlue();
+        break;
+    case 2:  //yellow
+        turnOn_BoosterpackLEDRed();
+        turnOn_BoosterpackLEDGreen();
+        turnOff_BoosterpackLEDBlue();
+        break;
+    case 3:  // blue
         turnOff_LaunchpadLED2Red();
-        turnOn_LaunchpadLED2Green();
-        turnOff_LaunchpadLED2Blue();
-        break;
-    case 3:  //yellow
-        turnOn_LaunchpadLED2Red();
-        turnOn_LaunchpadLED2Green();
-        turnOff_LaunchpadLED2Blue();
-        break;
-    case 4:  // blue
-        turnOff_LaunchpadLED2Red();
-        turnOff_LaunchpadLED2Green();
-        turnOn_LaunchpadLED2Blue();
-        break;
-    case 5:  //pink
-        turnOn_LaunchpadLED2Red();
         turnOff_LaunchpadLED2Green();
         turnOn_LaunchpadLED2Blue();
         break;
-    case 6:   //light blue
+    case 4:  //pink
+        turnOn_LaunchpadLED2Red();
+        turnOff_LaunchpadLED2Green();
+        turnOn_LaunchpadLED2Blue();
+        break;
+    case 5:   //light blue
         turnOff_LaunchpadLED2Red();
         turnOn_LaunchpadLED2Green();
         turnOn_LaunchpadLED2Blue();
         break;
-    case 7: //white
+    case 6: //white
         turnOn_LaunchpadLED2Red();
         turnOn_LaunchpadLED2Green();
         turnOn_LaunchpadLED2Blue();
         break;
-    case 8:  //off
+    case 7:  //off
         turnOff_LaunchpadLED2Red();
         turnOff_LaunchpadLED2Green();
         turnOff_LaunchpadLED2Blue();

@@ -13,11 +13,11 @@
 
 #define PRESSED 0
 
+
 #define BoosterUP BIT1 //S1 BUTTON
+#define BoosterDN BIT5
 
 #define redLaunchpad BIT0
-
-#define BoosterDN BIT5
 
 #define boosterRGB_RED BIT6
 #define boosterRGB_GREEN BIT4
@@ -37,6 +37,19 @@ void RGBredLaunchpad()//p2.0
 
 }
 
+void BoosterpackUP()
+{
+    P5DIR = P5DIR & ~BoosterUP;
+    P5REN = P5REN | BoosterUP;
+    P5OUT = P5OUT | BoosterUP;
+
+}
+
+void RGBredBooster()
+{
+    P2DIR = P2DIR | boosterRGB_RED;
+   // P2OUT |= boosterRGB_RED;
+}
 // TODO: Create a function to initialize the GPIO.
 // Even though this assignment does not use all of the pushbuttons, you should write one function that does a complete GPIO init.
 void initGPIO()
@@ -55,8 +68,9 @@ void initGPIO()
 
     void Launchpadleft();
     void Launchpadright();
-    void BoosterpackUP();
+
     void BoosterpackDN();
+    void BoosterpackUP();
     // Launchpad S1
 
     // Launchpad S2
@@ -99,13 +113,7 @@ void Launchpadright() //up
 
 }
 
-void BoosterpackUP()
-{
-    P5DIR = P5DIR & ~BoosterUP;
-    P5REN = P5REN | BoosterUP;
-    P5OUT = P5OUT | BoosterUP;
 
-}
 void BoosterpackDN ()
 {
     P3DIR = P3DIR & ~BoosterDN;
@@ -140,11 +148,7 @@ void RGBblueLaunchpad()//2.1
     P2DIR = P2DIR | launchpadRGB_BLUE;
  //   P2OUT |= launchpadRGB_BLUE;
 }
-void RGBredBooster()
-{
-    P2DIR = P2DIR | boosterRGB_RED;
-   // P2OUT |= boosterRGB_RED;
-}
+
 void RGBgreenBooster()
 {
     P2DIR = P2DIR | boosterRGB_GREEN;
@@ -254,7 +258,8 @@ void turnOn_BoosterpackLEDRed()
 // TODO: Create a function to turn off the Red Boosterpack LED2.
 void turnOff_BoosterpackLEDRed()
 {
-    P2OUT &= boosterRGB_RED;
+    P2OUT |= boosterRGB_RED;
+    P2OUT = P2OUT &~boosterRGB_RED;
 }
 
 // TODO: Create a function to turn on the Green Boosterpack LED2.
@@ -267,7 +272,8 @@ void turnOn_BoosterpackLEDGreen()
 // TODO: Create a function to turn off the Green Boosterpack LED2.
 void turnOff_BoosterpackLEDGreen()
 {
-    P2OUT &= boosterRGB_GREEN;
+    P2OUT |= boosterRGB_GREEN;
+    P2OUT = P2OUT &~boosterRGB_GREEN;
 }
 
 // TODO: Create a function to turn on the Blue Boosterpack LED2.
@@ -280,5 +286,6 @@ void turnOn_BoosterpackLEDBlue()
 // TODO: Create a function to turn off the Green Boosterpack LED2.
 void turnOff_BoosterpackLEDBlue()
 {
-    P5OUT &= boosterRGB_BLUE;
+    P5OUT |= boosterRGB_BLUE;
+    P5OUT = P5OUT &~boosterRGB_BLUE;
 }

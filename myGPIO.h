@@ -49,6 +49,26 @@ void turnOn_BoosterpackLEDBlue();
 void turnOff_BoosterpackLEDBlue();
 
 // TODO: Define any constants that are local to myGPIO.c using #define
+//re define stuff here
 
+#define PRESSED 0
+
+
+#define BoosterUP BIT1 //S1 BUTTON
+#define BoosterDN BIT5
+
+#define redLaunchpad BIT0
+
+#define boosterRGB_RED BIT6
+#define boosterRGB_GREEN BIT4
+#define boosterRGB_BLUE BIT6
+
+#define launchpadRGB_RED BIT0
+#define launchpadRGB_BLUE BIT2
+#define launchpadRGB_GREEN BIT1
+
+#define LaunchpadL BIT1  //P1.1
+#define LaunchpadR BIT4
+//look at me reading and following directions
 
 #endif /* MYGPIO_H_ */

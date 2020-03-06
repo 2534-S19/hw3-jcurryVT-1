@@ -38,7 +38,7 @@ int main(void)
 
         if (timer0Expired())
         {
-            count0 = ((count0 + 1) % 8);
+            count0 = ((count0 + 1) % 8); //keeps count0 from being greater than 7
         }
         // TODO: If Timer1 has expired, update the button history from the pushbutton value.
         // YOU MUST WRITE timer1expired IN myTimer.c
@@ -50,13 +50,14 @@ int main(void)
         // TODO: Call the button state machine function to check for a completed, debounced button press.
         // YOU MUST WRITE THIS FUNCTION BELOW.
 
-        bool check = fsmBoosterpackButtonS1(history);
+        bool check = fsmBoosterpackButtonS1(history); //does what the todo says it does.  calls a function
 
         //// TODO: If a completed, debounced button press has occurred, increment count1.
 
         if (check)
         {
-            (count1++ );
+            (count1=(count1+1 )%8); //keeps the value of count  in the bounds of the FSM
+            //this allows the colors to loop for lack of a better word
         }
 
     }
@@ -127,8 +128,9 @@ void changeLaunchpadLED2(unsigned int count0) //can i switch to count0 or count1
 // This is essentially a copy of the previous function, using a different LED
 void changeBoosterpackLED(unsigned int count1)
 {
-    //it's calling colors wrong
-    switch ((count1)%8)
+    //hope you don't care too much what order colors come in cause it's different from the golden solun
+
+    switch (count1)
     //what's switch based on
     {
 
@@ -182,30 +184,22 @@ void changeBoosterpackLED(unsigned int count1)
 bool fsmBoosterpackButtonS1(unsigned char buttonhistory) //what is buttonhistory is that counting button presses so i can switch colors
 {
 
-    // do i want my fsm here
-    //or do I want to debounce here
-    //or boffa
-//button hist to know where or no
-
-    //use pull down
-
-    // in summary part of slides
-
+    //debounced here
     bool pressed = false;
 
-    static enum
+    static enum //can be up or down
     {
         up, down
     }
 
-    state = up;
-    switch (state)
+    state = up; //starts up
+    switch (state) //depends on up or dn
     {
     case up:
         if (buttonhistory == 0xff) //why doesn't it work w/1 mess with this later
         {
             state = down;
-            pressed = true;
+            pressed = true; //if the button's pressed it's down
         }
         break;
 
@@ -213,7 +207,7 @@ bool fsmBoosterpackButtonS1(unsigned char buttonhistory) //what is buttonhistory
         if (buttonhistory != 0xff)
         {
             state = up;
-            pressed = false;
+            pressed = false; //button not pressed it's up
         }
         break;
 

@@ -12,6 +12,8 @@
 // Aliases for the Timers and the preScaler arguments are defined in myTimer.h
 void initTimer(unsigned int timer, unsigned int preScaler, unsigned int count)
 {
+    //all of these are from the slides w/different driverlib fn's
+
     // For the specified timer and pre-scale value, put the timer in 32-bit periodic mode.
     Timer32_initModule(timer, preScaler, TIMER32_32BIT, TIMER32_PERIODIC_MODE);
 

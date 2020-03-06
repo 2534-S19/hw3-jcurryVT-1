@@ -11,33 +11,16 @@
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 #include "myGPIO.h"
 
-#define PRESSED 0
-
-
-#define BoosterUP BIT1 //S1 BUTTON
-#define BoosterDN BIT5
-
-#define redLaunchpad BIT0
-
-#define boosterRGB_RED BIT6
-#define boosterRGB_GREEN BIT4
-#define boosterRGB_BLUE BIT6
-
-#define launchpadRGB_RED BIT0
-#define launchpadRGB_BLUE BIT2
-#define launchpadRGB_GREEN BIT1
-
-#define LaunchpadL BIT1  //P1.1
-#define LaunchpadR BIT4
-
 // TODO: Create a function to initialize the GPIO.
 // Even though this assignment does not use all of the pushbuttons, you should write one function that does a complete GPIO init.
 void initGPIO()
 {
-    //call all the other functions
+    //call all the functions
 
-    // I just copied and pasted this from my project1
-    // if it kinda worked once it should kinda work again
+   //this is the same structure as my project 1 code
+    //but it works better this time cause I learn slow but I learn
+
+    //I didn't feel like doing the same thing twice
     void redLaunchpadON();
     void RGBredLaunchpad();
     void RGBblueLaunchpad();
@@ -84,7 +67,7 @@ void RGBredLaunchpad()//p2.0
 
 }
 
-void BoosterpackUP()
+void BoosterpackUP()//button S1
 {
     P5DIR = P5DIR & ~BoosterUP;
     P5REN = P5REN | BoosterUP;
@@ -92,7 +75,7 @@ void BoosterpackUP()
 
 }
 
-void RGBredBooster()
+void RGBredBooster()//p2.6
 {
     P2DIR = P2DIR | boosterRGB_RED;
    // P2OUT |= boosterRGB_RED;
@@ -114,14 +97,14 @@ void Launchpadright() //up
 }
 
 
-void BoosterpackDN ()
+void BoosterpackDN ()//s2
 {
     P3DIR = P3DIR & ~BoosterDN;
     P3REN = P3REN | BoosterDN;
     P3OUT = P3OUT | BoosterDN;
 
 }
-void redLaunchpadON()
+void redLaunchpadON()//led1
 
 {
     P1DIR = P1DIR | redLaunchpad;
@@ -143,19 +126,19 @@ void RGBgreenLaunchpad()//2.1
     //P2OUT |= launchpadRGB_GREEN;
 }
 
-void RGBblueLaunchpad()//2.1
+void RGBblueLaunchpad()//2.2
 {
     P2DIR = P2DIR | launchpadRGB_BLUE;
  //   P2OUT |= launchpadRGB_BLUE;
 }
 
-void RGBgreenBooster()
+void RGBgreenBooster()//p2.4
 {
     P2DIR = P2DIR | boosterRGB_GREEN;
    // P2OUT |= boosterRGB_GREEN;
 }
 
-void RGBblueBooster()
+void RGBblueBooster()//p5.6
 {
     P5DIR = P5DIR | boosterRGB_BLUE;
     //P5OUT |= boosterRGB_BLUE;
